@@ -9,6 +9,12 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 
+// Dashboard imports
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import ResponsableDashboard from "./pages/responsable/ResponsableDashboard";
+import FormateurDashboard from "./pages/formateur/FormateurDashboard";
+import CandidatDashboard from "./pages/candidat/CandidatDashboard";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -21,6 +27,19 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          
+          {/* Responsable Routes */}
+          <Route path="/dashboard" element={<ResponsableDashboard />} />
+          
+          {/* Formateur Routes */}
+          <Route path="/formateur/dashboard" element={<FormateurDashboard />} />
+          
+          {/* Candidat Routes */}
+          <Route path="/candidat/dashboard" element={<CandidatDashboard />} />
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
