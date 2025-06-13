@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,6 +18,7 @@ import CandidatDashboard from "./pages/candidat/CandidatDashboard";
 import FormateurCandidats from "./pages/formateur/Candidats";
 import FormateurCours from "./pages/formateur/Cours";
 import FormateurPlanning from "./pages/formateur/Planning";
+import FormateurVehicules from "./pages/formateur/Vehicules";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +44,7 @@ const App = () => (
           <Route path="/formateur/candidats" element={<FormateurCandidats />} />
           <Route path="/formateur/cours" element={<FormateurCours />} />
           <Route path="/formateur/planning" element={<FormateurPlanning />} />
+          <Route path="/formateur/vehicules" element={<FormateurVehicules />} />
           
           {/* Candidat Routes */}
           <Route path="/candidat/dashboard" element={<CandidatDashboard />} />

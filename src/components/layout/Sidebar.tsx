@@ -43,6 +43,7 @@ const Sidebar = ({ userRole }: SidebarProps) => {
           { icon: Users, label: 'Candidats', path: '/formateur/candidats' },
           { icon: BookOpen, label: 'Cours', path: '/formateur/cours' },
           { icon: Calendar, label: 'Planning', path: '/formateur/planning' },
+          { icon: Car, label: 'Véhicules', path: '/formateur/vehicules' },
         ];
       case 'candidat':
         return [
