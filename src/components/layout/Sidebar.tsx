@@ -39,10 +39,10 @@ const Sidebar = ({ userRole }: SidebarProps) => {
         ];
       case 'formateur':
         return [
-          { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
-          { icon: BookOpen, label: 'Cours', path: '/cours' },
-          { icon: Users, label: 'Candidats', path: '/candidats' },
-          { icon: Calendar, label: 'Planning', path: '/planning' },
+          { icon: LayoutDashboard, label: 'Dashboard', path: '/formateur/dashboard' },
+          { icon: Users, label: 'Candidats', path: '/formateur/candidats' },
+          { icon: BookOpen, label: 'Cours', path: '/formateur/cours' },
+          { icon: Calendar, label: 'Planning', path: '/formateur/planning' },
         ];
       case 'candidat':
         return [

@@ -15,6 +15,11 @@ import ResponsableDashboard from "./pages/responsable/ResponsableDashboard";
 import FormateurDashboard from "./pages/formateur/FormateurDashboard";
 import CandidatDashboard from "./pages/candidat/CandidatDashboard";
 
+// Formateur pages
+import FormateurCandidats from "./pages/formateur/Candidats";
+import FormateurCours from "./pages/formateur/Cours";
+import FormateurPlanning from "./pages/formateur/Planning";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -36,6 +41,9 @@ const App = () => (
           
           {/* Formateur Routes */}
           <Route path="/formateur/dashboard" element={<FormateurDashboard />} />
+          <Route path="/formateur/candidats" element={<FormateurCandidats />} />
+          <Route path="/formateur/cours" element={<FormateurCours />} />
+          <Route path="/formateur/planning" element={<FormateurPlanning />} />
           
           {/* Candidat Routes */}
           <Route path="/candidat/dashboard" element={<CandidatDashboard />} />
