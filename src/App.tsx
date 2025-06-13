@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,6 +20,13 @@ import FormateurCandidats from "./pages/formateur/Candidats";
 import FormateurCours from "./pages/formateur/Cours";
 import FormateurPlanning from "./pages/formateur/Planning";
 import FormateurVehicules from "./pages/formateur/Vehicules";
+
+// Candidat pages
+import CandidatPlanning from "./pages/candidat/Planning";
+import CandidatDocuments from "./pages/candidat/Documents";
+import CandidatCours from "./pages/candidat/Cours";
+import CandidatExamens from "./pages/candidat/Examens";
+import CandidatPaiements from "./pages/candidat/Paiements";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +56,11 @@ const App = () => (
           
           {/* Candidat Routes */}
           <Route path="/candidat/dashboard" element={<CandidatDashboard />} />
+          <Route path="/candidat/planning" element={<CandidatPlanning />} />
+          <Route path="/candidat/documents" element={<CandidatDocuments />} />
+          <Route path="/candidat/cours" element={<CandidatCours />} />
+          <Route path="/candidat/examens" element={<CandidatExamens />} />
+          <Route path="/candidat/paiements" element={<CandidatPaiements />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

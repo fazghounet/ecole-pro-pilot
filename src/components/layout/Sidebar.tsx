@@ -47,12 +47,12 @@ const Sidebar = ({ userRole }: SidebarProps) => {
         ];
       case 'candidat':
         return [
-          { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
-          { icon: BookOpen, label: 'Cours', path: '/cours' },
-          { icon: Calendar, label: 'Planning', path: '/planning' },
-          { icon: CreditCard, label: 'Paiements', path: '/paiements' },
-          { icon: FileText, label: 'Documents', path: '/documents' },
-          { icon: FileText, label: 'Examens', path: '/examens' },
+          { icon: LayoutDashboard, label: 'Dashboard', path: '/candidat/dashboard' },
+          { icon: BookOpen, label: 'Cours', path: '/candidat/cours' },
+          { icon: Calendar, label: 'Planning', path: '/candidat/planning' },
+          { icon: CreditCard, label: 'Paiements', path: '/candidat/paiements' },
+          { icon: FileText, label: 'Documents', path: '/candidat/documents' },
+          { icon: FileText, label: 'Examens', path: '/candidat/examens' },
         ];
       default:
         return [];
