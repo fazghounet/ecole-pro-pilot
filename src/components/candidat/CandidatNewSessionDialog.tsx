@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   Dialog,
@@ -11,7 +10,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Calendar, Map, Plus } from "lucide-react";
+import { Calendar, Plus } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -27,7 +26,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import MapPicker from "../MapPicker";
 
 type SessionType = "Conduite" | "Code de la route";
 
@@ -36,7 +34,6 @@ interface NewSessionForm {
   date: Date | null;
   hour: string;
   place: string;
-  coords?: { lng: number; lat: number };
 }
 
 export default function CandidatNewSessionDialog() {
@@ -48,8 +45,6 @@ export default function CandidatNewSessionDialog() {
     place: "",
   });
   const [success, setSuccess] = useState(false);
-  const [showMap, setShowMap] = useState(false);
-  const [mapboxToken, setMapboxToken] = useState<string>("");
 
   const handleChangeType = (value: string) => {
     setForm((f) => ({ ...f, type: value as SessionType }));
@@ -64,31 +59,22 @@ export default function CandidatNewSessionDialog() {
   };
 
   const handlePlaceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm((f) => ({ ...f, place: e.target.value, coords: undefined }));
+    setForm((f) => ({ ...f, place: e.target.value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.type || !form.date || !form.hour || (!form.place && !form.coords)) {
+    if (!form.type || !form.date || !form.hour || !form.place) {
       setSuccess(false);
       return;
     }
     setSuccess(true);
     // Ici, lancer une requête API si besoin
     setTimeout(() => {
-      setForm({ type: "", date: null, hour: "", place: "" });
+      setForm({ type: "", date: null, hour: "" });
       setOpen(false);
       setSuccess(false);
     }, 1200);
-  };
-
-  const handleMapPick = (coords: { lng: number; lat: number }) => {
-    setForm((f) => ({
-      ...f,
-      place: `Lng: ${coords.lng.toFixed(4)}, Lat: ${coords.lat.toFixed(4)}`,
-      coords,
-    }));
-    setShowMap(false);
   };
 
   return (
@@ -158,62 +144,20 @@ export default function CandidatNewSessionDialog() {
               required
             />
           </div>
-          {/* Ajout du champ Lieu */}
+          {/* Champ Lieu - uniquement une entrée texte */}
           <div>
             <label className="block text-sm font-medium mb-1" htmlFor="place">
               Lieu de la séance
             </label>
-            <div className="flex gap-2">
-              <Input
-                id="place"
-                type="text"
-                placeholder="Adresse/manuellement"
-                className="w-full"
-                value={form.coords ? form.place : form.place}
-                onChange={handlePlaceChange}
-              />
-              <Popover open={showMap} onOpenChange={setShowMap}>
-                <PopoverTrigger asChild>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    title="Choisir sur la carte"
-                    onClick={() => setShowMap(v => !v)}
-                  >
-                    <Map className="w-4 h-4" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-2" align="end" side="bottom">
-                  {mapboxToken ? (
-                    <MapPicker
-                      mapboxToken={mapboxToken}
-                      onSelect={handleMapPick}
-                      initialCoords={form.coords}
-                    />
-                  ) : (
-                    <div>
-                      <div className="text-xs text-gray-500 mb-2">
-                        Entrez votre clé publique Mapbox pour activer la carte :
-                      </div>
-                      <Input
-                        placeholder="Mapbox public token"
-                        value={mapboxToken}
-                        onChange={e => setMapboxToken(e.target.value)}
-                        className="mb-2"
-                      />
-                      <div className="text-xs text-muted-foreground">
-                        Vous pouvez obtenir une clé sur <a href="https://mapbox.com/" target="_blank" className="underline" rel="noopener noreferrer">mapbox.com</a>.
-                      </div>
-                    </div>
-                  )}
-                </PopoverContent>
-              </Popover>
-            </div>
-            {!!form.coords && (
-              <div className="text-xs text-blue-600 mt-1">
-                Coordonnées sélectionnées : {form.place}
-              </div>
-            )}
+            <Input
+              id="place"
+              type="text"
+              placeholder="Adresse ou lieu"
+              className="w-full"
+              value={form.place}
+              onChange={handlePlaceChange}
+              required
+            />
           </div>
           {success && (
             <div className="text-green-600 text-sm">
