@@ -26,6 +26,7 @@ import ResponsableCours from "./pages/responsable/Cours";
 import ResponsablePlanning from "./pages/responsable/Planning";
 import ResponsableVehicules from "./pages/responsable/Vehicules";
 import ResponsablePaiements from "./pages/responsable/Paiements";
+import ResponsableProfil from "./pages/responsable/Profil";
 
 // Formateur pages
 import FormateurCandidats from "./pages/formateur/Candidats";
@@ -67,6 +68,7 @@ const App = () => (
           <Route path="/responsable/planning" element={<ResponsablePlanning />} />
           <Route path="/responsable/vehicules" element={<ResponsableVehicules />} />
           <Route path="/responsable/paiements" element={<ResponsablePaiements />} />
+          <Route path="/responsable/profil" element={<ResponsableProfil />} />
           
           {/* Formateur Routes */}
           <Route path="/formateur/dashboard" element={<FormateurDashboard />} />

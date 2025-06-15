@@ -10,7 +10,8 @@ import {
   Settings,
   BookOpen,
   CreditCard,
-  Building
+  Building,
+  User
 } from 'lucide-react';
 import {
   Sidebar,
@@ -45,6 +46,7 @@ const AppSidebar = ({ userRole }: AppSidebarProps) => {
           { icon: Calendar, label: 'Planning', path: '/responsable/planning' },
           { icon: Car, label: 'Véhicules', path: '/responsable/vehicules' },
           { icon: CreditCard, label: 'Paiements', path: '/responsable/paiements' },
+          { icon: User, label: 'Profil', path: '/responsable/profil' },
         ];
       case 'formateur':
         return [
