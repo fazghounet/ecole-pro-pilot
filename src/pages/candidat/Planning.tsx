@@ -1,8 +1,8 @@
-
 import React from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import { Calendar, Clock, User, Car } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import CandidatNewSessionDialog from "@/components/candidat/CandidatNewSessionDialog";
 
 const CandidatPlanning = () => {
   const upcomingSessions = [
@@ -59,10 +59,7 @@ const CandidatPlanning = () => {
             <h1 className="text-2xl font-bold text-gray-900">Mon Planning</h1>
             <p className="text-gray-600">Gérez vos séances de formation</p>
           </div>
-          <Button>
-            <Calendar className="w-4 h-4 mr-2" />
-            Demander une séance
-          </Button>
+          <CandidatNewSessionDialog />
         </div>
 
         <div className="bg-white rounded-lg shadow">
