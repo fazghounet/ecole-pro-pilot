@@ -2,7 +2,14 @@
 import React from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import CardStat from '@/components/ui/card-stat';
-import { Users, BookOpen, Car, Calendar } from 'lucide-react';
+import { Users, BookOpen, Car, Calendar, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card as UICard, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+const pendingRequests = [
+  { id: 'REQ001', name: 'Lucas Dubois' },
+  { id: 'REQ002', name: 'Chloé Garcia' },
+];
 
 const ResponsableDashboard = () => {
   return (
@@ -35,33 +42,38 @@ const ResponsableDashboard = () => {
             icon={Car}
           />
           <CardStat
-            title="Sessions aujourd'hui"
-            value={12}
-            description="Cours du jour"
-            icon={Calendar}
+            title="Demandes en attente"
+            value={pendingRequests.length}
+            description="Nouvelles inscriptions"
+            icon={Users}
           />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h3 className="text-lg font-semibold mb-4">Sessions du jour</h3>
-            <div className="space-y-3">
-              <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                <div>
-                  <span className="font-medium">Code de la route - Groupe A</span>
-                  <p className="text-sm text-gray-600">Formateur: Pierre Martin</p>
+          <UICard>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-lg font-semibold">Demandes d'inscription</CardTitle>
+                <Button variant="link" asChild className="text-sm">
+                    <a href="/responsable/utilisateurs">
+                        Tout voir <ArrowRight className="ml-1 h-4 w-4" />
+                    </a>
+                </Button>
+            </CardHeader>
+            <CardContent>
+                <div className="space-y-3 pt-2">
+                {pendingRequests.length > 0 ? (
+                    pendingRequests.slice(0, 3).map((req) => (
+                    <div key={req.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-md">
+                        <span className="font-medium text-sm">{req.name}</span>
+                        <Button variant="secondary" size="sm" className="h-7">Détails</Button>
+                    </div>
+                    ))
+                ) : (
+                    <p className="text-sm text-center text-gray-500 py-4">Aucune nouvelle demande.</p>
+                )}
                 </div>
-                <span className="text-sm font-medium">09:00</span>
-              </div>
-              <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                <div>
-                  <span className="font-medium">Conduite - Marie Leroux</span>
-                  <p className="text-sm text-gray-600">Véhicule: Renault Clio (AB-123-CD)</p>
-                </div>
-                <span className="text-sm font-medium">14:30</span>
-              </div>
-            </div>
-          </div>
+            </CardContent>
+          </UICard>
 
           <div className="bg-white p-6 rounded-lg shadow">
             <h3 className="text-lg font-semibold mb-4">Alertes véhicules</h3>

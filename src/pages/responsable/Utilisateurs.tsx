@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { PlusCircle } from 'lucide-react';
+import { PlusCircle, Check, X } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -24,12 +24,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const utilisateurs = [
   { id: '1', nom: 'Pierre Martin', email: 'pierre.m@example.com', role: 'formateur' },
   { id: '2', nom: 'Marie Leroux', email: 'marie.l@example.com', role: 'candidat' },
   { id: '3', nom: 'Paul Bernard', email: 'paul.b@example.com', role: 'candidat' },
 ];
+
+const pendingRequests = [
+  { id: 'REQ001', nom: 'Lucas Dubois', email: 'lucas.d@example.com', date: '15/06/2025' },
+  { id: 'REQ002', nom: 'Chloé Garcia', email: 'chloe.g@example.com', date: '14/06/2025' },
+];
+
 
 const AddUserDialog = () => {
   return (
@@ -87,41 +94,85 @@ const AddUserDialog = () => {
 const ResponsableUtilisateurs = () => {
   return (
     <DashboardLayout userRole="responsable" userName="Jean Dupont">
-      <div className="space-y-6">
+      <div className="space-y-8">
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Gestion des Utilisateurs</h1>
-            <p className="text-gray-600">Liste des formateurs et candidats de votre auto-école.</p>
+            <p className="text-gray-600">Gérez les inscriptions et les comptes de votre auto-école.</p>
           </div>
           <AddUserDialog />
         </div>
         
-        <div className="bg-white p-6 rounded-lg shadow">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Nom</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Rôle</TableHead>
-                <TableHead>Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {utilisateurs.map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell className="font-medium">{user.nom}</TableCell>
-                  <TableCell>{user.email}</TableCell>
-                  <TableCell>
-                    <Badge variant={user.role === 'formateur' ? 'secondary' : 'outline'}>{user.role}</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <Button variant="outline" size="sm">Modifier</Button>
-                  </TableCell>
+        <Card>
+          <CardHeader>
+            <CardTitle>Demandes d'inscription en attente ({pendingRequests.length})</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {pendingRequests.length > 0 ? (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Nom</TableHead>
+                    <TableHead>Email</TableHead>
+                    <TableHead>Date de demande</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {pendingRequests.map((req) => (
+                    <TableRow key={req.id}>
+                      <TableCell className="font-medium">{req.nom}</TableCell>
+                      <TableCell>{req.email}</TableCell>
+                      <TableCell>{req.date}</TableCell>
+                      <TableCell className="text-right space-x-1">
+                        <Button variant="ghost" size="icon" className="text-green-600 hover:text-green-700 hover:bg-green-50">
+                          <Check className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="icon" className="text-red-600 hover:text-red-700 hover:bg-red-50">
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            ) : (
+              <p className="text-sm text-center text-gray-500 py-4">Aucune demande en attente.</p>
+            )}
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader>
+            <CardTitle>Utilisateurs actifs</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Nom</TableHead>
+                  <TableHead>Email</TableHead>
+                  <TableHead>Rôle</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
+              </TableHeader>
+              <TableBody>
+                {utilisateurs.map((user) => (
+                  <TableRow key={user.id}>
+                    <TableCell className="font-medium">{user.nom}</TableCell>
+                    <TableCell>{user.email}</TableCell>
+                    <TableCell>
+                      <Badge variant={user.role === 'formateur' ? 'secondary' : 'outline'}>{user.role}</Badge>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button variant="outline" size="sm">Modifier</Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
       </div>
     </DashboardLayout>
   );
