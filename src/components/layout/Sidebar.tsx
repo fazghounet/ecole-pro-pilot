@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   Users, 
@@ -94,10 +95,10 @@ const Sidebar = ({ userRole }: SidebarProps) => {
                 asChild 
                 tooltip={item.label}
               >
-                <a href={item.path} className="flex items-center space-x-3">
+                <Link to={item.path} className="flex items-center space-x-3">
                   <item.icon className="w-5 h-5" />
                   <span>{item.label}</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
