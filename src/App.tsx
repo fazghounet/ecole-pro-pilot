@@ -32,6 +32,7 @@ import CandidatDocuments from "./pages/candidat/Documents";
 import CandidatCours from "./pages/candidat/Cours";
 import CandidatExamens from "./pages/candidat/Examens";
 import CandidatPaiements from "./pages/candidat/Paiements";
+import ChoisirAutoEcole from "./pages/candidat/ChoisirAutoEcole";
 
 const queryClient = new QueryClient();
 
@@ -64,6 +65,7 @@ const App = () => (
           
           {/* Candidat Routes */}
           <Route path="/candidat/dashboard" element={<CandidatDashboard />} />
+          <Route path="/candidat/choisir-auto-ecole" element={<ChoisirAutoEcole />} />
           <Route path="/candidat/planning" element={<CandidatPlanning />} />
           <Route path="/candidat/documents" element={<CandidatDocuments />} />
           <Route path="/candidat/cours" element={<CandidatCours />} />
@@ -79,3 +81,4 @@ const App = () => (
 );
 
 export default App;
+
