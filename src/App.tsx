@@ -15,6 +15,11 @@ import ResponsableDashboard from "./pages/responsable/ResponsableDashboard";
 import FormateurDashboard from "./pages/formateur/FormateurDashboard";
 import CandidatDashboard from "./pages/candidat/CandidatDashboard";
 
+// Admin pages
+import AutoEcoles from "./pages/admin/AutoEcoles";
+import Utilisateurs from "./pages/admin/Utilisateurs";
+import Roles from "./pages/admin/Roles";
+
 // Formateur pages
 import FormateurCandidats from "./pages/formateur/Candidats";
 import FormateurCours from "./pages/formateur/Cours";
@@ -43,6 +48,9 @@ const App = () => (
           
           {/* Admin Routes */}
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/auto-ecoles" element={<AutoEcoles />} />
+          <Route path="/admin/utilisateurs" element={<Utilisateurs />} />
+          <Route path="/admin/roles" element={<Roles />} />
           
           {/* Responsable Routes */}
           <Route path="/dashboard" element={<ResponsableDashboard />} />
