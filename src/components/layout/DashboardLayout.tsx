@@ -1,6 +1,7 @@
 
 import React from 'react';
-import Sidebar from './Sidebar';
+import { SidebarProvider, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
+import AppSidebar from './Sidebar';
 import DashboardHeader from './DashboardHeader';
 
 interface DashboardLayoutProps {
@@ -11,13 +12,17 @@ interface DashboardLayoutProps {
 
 const DashboardLayout = ({ children, userRole, userName }: DashboardLayoutProps) => {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Sidebar userRole={userRole} />
-      <DashboardHeader userName={userName} userRole={userRole} />
-      <main className="ml-64 pt-16 p-6">
-        {children}
-      </main>
-    </div>
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full">
+        <AppSidebar userRole={userRole} />
+        <SidebarInset>
+          <DashboardHeader userName={userName} userRole={userRole} />
+          <main className="p-6">
+            {children}
+          </main>
+        </SidebarInset>
+      </div>
+    </SidebarProvider>
   );
 };
 

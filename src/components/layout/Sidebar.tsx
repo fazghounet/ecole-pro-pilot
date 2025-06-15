@@ -1,4 +1,6 @@
+
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   Users, 
@@ -10,14 +12,22 @@ import {
   CreditCard,
   Building
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from '@/components/ui/sidebar';
 
-interface SidebarProps {
+interface AppSidebarProps {
   userRole: 'admin' | 'responsable' | 'formateur' | 'candidat';
 }
 
-const Sidebar = ({ userRole }: SidebarProps) => {
+const AppSidebar = ({ userRole }: AppSidebarProps) => {
   const getMenuItems = () => {
     switch (userRole) {
       case 'admin':
@@ -61,8 +71,8 @@ const Sidebar = ({ userRole }: SidebarProps) => {
   const menuItems = getMenuItems();
 
   return (
-    <div className="w-64 bg-white shadow-lg h-screen fixed left-0 top-0 z-40">
-      <div className="p-6">
+    <Sidebar>
+      <SidebarHeader className="p-6">
         <div className="flex items-center space-x-2">
           <div className="bg-primary p-2 rounded-lg">
             <Car className="w-6 h-6 text-white" />
@@ -72,27 +82,28 @@ const Sidebar = ({ userRole }: SidebarProps) => {
             <p className="text-xs text-gray-500">Manager</p>
           </div>
         </div>
-      </div>
+      </SidebarHeader>
       
-      <Separator className="mb-4" />
-      
-      <nav className="px-4">
-        {menuItems.map((item) => (
-          <Button
-            key={item.path}
-            variant="ghost"
-            className="w-full justify-start mb-2 text-gray-700 hover:text-primary hover:bg-gray-100"
-            asChild
-          >
-            <a href={item.path} className="flex items-center space-x-3">
-              <item.icon className="w-5 h-5" />
-              <span>{item.label}</span>
-            </a>
-          </Button>
-        ))}
-      </nav>
-    </div>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {menuItems.map((item) => (
+                <SidebarMenuItem key={item.path}>
+                  <SidebarMenuButton asChild>
+                    <Link to={item.path} className="flex items-center space-x-3">
+                      <item.icon className="w-5 h-5" />
+                      <span>{item.label}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
   );
 };
 
-export default Sidebar;
+export default AppSidebar;
