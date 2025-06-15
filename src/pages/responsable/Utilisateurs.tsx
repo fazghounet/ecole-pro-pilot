@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import {
   Table,
@@ -25,6 +24,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import AffecterCandidatDialog from '@/components/responsable/AffecterCandidatDialog';
 
 const utilisateurs = [
   { id: '1', nom: 'Pierre Martin', email: 'pierre.m@example.com', role: 'formateur' },
@@ -37,6 +37,7 @@ const pendingRequests = [
   { id: 'REQ002', nom: 'Chloé Garcia', email: 'chloe.g@example.com', date: '14/06/2025' },
 ];
 
+const formateurs = utilisateurs.filter(u => u.role === 'formateur').map(u => ({ id: u.id, nom: u.nom }));
 
 const AddUserDialog = () => {
   return (
@@ -90,8 +91,17 @@ const AddUserDialog = () => {
   );
 }
 
-
 const ResponsableUtilisateurs = () => {
+  // Pour l'affectation (UI fake): onStocke juste l'affectation temporairement avec useState
+  const [affectations, setAffectations] = useState<{[candidatId: string]: string}>({});
+
+  const handleAffecter = (candidatId: string, formateurId: string) => {
+    setAffectations(prev => ({
+      ...prev,
+      [candidatId]: formateurId
+    }));
+  };
+
   return (
     <DashboardLayout userRole="responsable" userName="Jean Dupont">
       <div className="space-y-8">
@@ -164,8 +174,22 @@ const ResponsableUtilisateurs = () => {
                     <TableCell>
                       <Badge variant={user.role === 'formateur' ? 'secondary' : 'outline'}>{user.role}</Badge>
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-right space-x-1">
                       <Button variant="outline" size="sm">Modifier</Button>
+                      {user.role === 'candidat' && (
+                        <>
+                          <AffecterCandidatDialog
+                            candidatNom={user.nom}
+                            formateurs={formateurs}
+                            onAffecter={(formateurId) => handleAffecter(user.id, formateurId)}
+                          />
+                          {affectations[user.id] && (
+                            <span className="ml-2 text-xs text-green-700">
+                              Affecté à {formateurs.find(f => f.id === affectations[user.id])?.nom}
+                            </span>
+                          )}
+                        </>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}
