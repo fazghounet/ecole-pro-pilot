@@ -89,10 +89,10 @@ const Sidebar = ({ userRole }: SidebarProps) => {
           {menuItems.map((item) => (
             <SidebarMenuItem key={item.path}>
               <SidebarMenuButton 
-                variant="ghost" 
+                variant="default" 
                 className="w-full justify-start mb-1 text-gray-700 hover:text-primary hover:bg-gray-100" 
                 asChild 
-                tooltip={{children: item.label, side: 'right'}}
+                tooltip={item.label}
               >
                 <a href={item.path} className="flex items-center space-x-3">
                   <item.icon className="w-5 h-5" />
