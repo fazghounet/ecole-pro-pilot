@@ -20,6 +20,13 @@ import AutoEcoles from "./pages/admin/AutoEcoles";
 import Utilisateurs from "./pages/admin/Utilisateurs";
 import Roles from "./pages/admin/Roles";
 
+// Responsable pages
+import ResponsableUtilisateurs from "./pages/responsable/Utilisateurs";
+import ResponsableCours from "./pages/responsable/Cours";
+import ResponsablePlanning from "./pages/responsable/Planning";
+import ResponsableVehicules from "./pages/responsable/Vehicules";
+import ResponsablePaiements from "./pages/responsable/Paiements";
+
 // Formateur pages
 import FormateurCandidats from "./pages/formateur/Candidats";
 import FormateurCours from "./pages/formateur/Cours";
@@ -55,6 +62,11 @@ const App = () => (
           
           {/* Responsable Routes */}
           <Route path="/dashboard" element={<ResponsableDashboard />} />
+          <Route path="/utilisateurs" element={<ResponsableUtilisateurs />} />
+          <Route path="/cours" element={<ResponsableCours />} />
+          <Route path="/planning" element={<ResponsablePlanning />} />
+          <Route path="/vehicules" element={<ResponsableVehicules />} />
+          <Route path="/paiements" element={<ResponsablePaiements />} />
           
           {/* Formateur Routes */}
           <Route path="/formateur/dashboard" element={<FormateurDashboard />} />
@@ -81,4 +93,3 @@ const App = () => (
 );
 
 export default App;
-
