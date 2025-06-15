@@ -9,8 +9,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useSidebar, SidebarTrigger } from '@/components/ui/sidebar';
-import { cn } from '@/lib/utils';
 
 interface DashboardHeaderProps {
   userName: string;
@@ -18,26 +16,18 @@ interface DashboardHeaderProps {
 }
 
 const DashboardHeader = ({ userName, userRole }: DashboardHeaderProps) => {
-  const { open, isMobile } = useSidebar();
-
   return (
-    <header
-      className={cn(
-        'bg-white shadow-sm border-b border-gray-200 h-16 fixed top-0 right-0 z-30 transition-[left] duration-300 ease-in-out',
-        isMobile ? 'left-0' : open ? 'left-64' : 'left-12'
-      )}
-    >
+    <header className="bg-white shadow-sm border-b border-gray-200 h-16 fixed top-0 right-0 left-64 z-30">
       <div className="flex items-center justify-between h-full px-6">
-        <div className="flex items-center gap-2">
-          <SidebarTrigger />
+        <div>
           <h2 className="text-lg font-semibold text-gray-900">Dashboard</h2>
         </div>
-
+        
         <div className="flex items-center space-x-4">
           <Button variant="ghost" size="icon">
             <Bell className="w-5 h-5 text-gray-600" />
           </Button>
-
+          
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center space-x-2">
