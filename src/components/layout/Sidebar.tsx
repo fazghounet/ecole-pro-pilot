@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
   LayoutDashboard, 
@@ -10,7 +11,14 @@ import {
   CreditCard,
   Building
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import {
+    Sidebar as ShadcnSidebar,
+    SidebarContent,
+    SidebarHeader,
+    SidebarMenu,
+    SidebarMenuItem,
+    SidebarMenuButton,
+} from "@/components/ui/sidebar"
 import { Separator } from '@/components/ui/separator';
 
 interface SidebarProps {
@@ -61,37 +69,41 @@ const Sidebar = ({ userRole }: SidebarProps) => {
   const menuItems = getMenuItems();
 
   return (
-    <div className="w-64 bg-white shadow-lg h-screen fixed left-0 top-0 z-40">
-      <div className="p-6">
-        <div className="flex items-center space-x-2">
+    <ShadcnSidebar collapsible="icon" className="bg-white shadow-lg hidden md:flex">
+      <SidebarHeader className="p-0">
+        <div className="flex items-center space-x-2 p-4">
           <div className="bg-primary p-2 rounded-lg">
             <Car className="w-6 h-6 text-white" />
           </div>
-          <div>
+          <div className="group-data-[state=collapsed]:hidden">
             <h1 className="text-xl font-bold text-gray-900">AutoÉcole</h1>
             <p className="text-xs text-gray-500">Manager</p>
           </div>
         </div>
-      </div>
+      </SidebarHeader>
       
-      <Separator className="mb-4" />
+      <Separator className="mb-2" />
       
-      <nav className="px-4">
-        {menuItems.map((item) => (
-          <Button
-            key={item.path}
-            variant="ghost"
-            className="w-full justify-start mb-2 text-gray-700 hover:text-primary hover:bg-gray-100"
-            asChild
-          >
-            <a href={item.path} className="flex items-center space-x-3">
-              <item.icon className="w-5 h-5" />
-              <span>{item.label}</span>
-            </a>
-          </Button>
-        ))}
-      </nav>
-    </div>
+      <SidebarContent>
+        <SidebarMenu className="px-2">
+          {menuItems.map((item) => (
+            <SidebarMenuItem key={item.path}>
+              <SidebarMenuButton 
+                variant="ghost" 
+                className="w-full justify-start mb-1 text-gray-700 hover:text-primary hover:bg-gray-100" 
+                asChild 
+                tooltip={{children: item.label, side: 'right'}}
+              >
+                <a href={item.path} className="flex items-center space-x-3">
+                  <item.icon className="w-5 h-5" />
+                  <span>{item.label}</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
+      </SidebarContent>
+    </ShadcnSidebar>
   );
 };
 
