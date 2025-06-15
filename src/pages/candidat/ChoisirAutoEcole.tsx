@@ -2,16 +2,48 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Home, MapPin, User } from 'lucide-react';
+import { Home, MapPin, User, Car, BookOpen, Euro } from 'lucide-react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import { useToast } from "@/components/ui/use-toast";
 
-// Données exemples pour les auto-écoles
+// Données exemples pour les auto-écoles avec tarifs
 const autoEcoles = [
-  { id: '1', nom: 'Auto-École Centre Ville', responsable: 'Jean Dupont', ville: 'Paris', description: 'Apprenez à conduire au coeur de la ville avec nos moniteurs expérimentés.' },
-  { id: '2', nom: 'Conduite Plus', responsable: 'Marie Martin', ville: 'Lyon', description: 'Des formations complètes pour tous les types de permis. Flexibilité et réussite.' },
-  { id: '3', nom: 'Permis Express', responsable: 'Pierre Durand', ville: 'Marseille', description: 'Passez votre permis rapidement grâce à nos stages accélérés.' },
-  { id: '4', nom: 'La Parisienne', responsable: 'Sophie Leroy', ville: 'Paris', description: 'L\'excellence de la formation à la conduite dans un cadre premium.'},
+  { 
+    id: '1', 
+    nom: 'Auto-École Centre Ville', 
+    responsable: 'Jean Dupont', 
+    ville: 'Paris', 
+    description: 'Apprenez à conduire au coeur de la ville avec nos moniteurs expérimentés.',
+    conduitePrice: 45,
+    codePrice: 25
+  },
+  { 
+    id: '2', 
+    nom: 'Conduite Plus', 
+    responsable: 'Marie Martin', 
+    ville: 'Lyon', 
+    description: 'Des formations complètes pour tous les types de permis. Flexibilité et réussite.',
+    conduitePrice: 42,
+    codePrice: 20
+  },
+  { 
+    id: '3', 
+    nom: 'Permis Express', 
+    responsable: 'Pierre Durand', 
+    ville: 'Marseille', 
+    description: 'Passez votre permis rapidement grâce à nos stages accélérés.',
+    conduitePrice: 48,
+    codePrice: 30
+  },
+  { 
+    id: '4', 
+    nom: 'La Parisienne', 
+    responsable: 'Sophie Leroy', 
+    ville: 'Paris', 
+    description: 'L\'excellence de la formation à la conduite dans un cadre premium.',
+    conduitePrice: 55,
+    codePrice: 35
+  },
 ];
 
 const ChoisirAutoEcole = () => {
@@ -46,12 +78,30 @@ const ChoisirAutoEcole = () => {
                                      <MapPin className="w-4 h-4" /> {ecole.ville}
                                 </CardDescription>
                             </CardHeader>
-                            <CardContent className="flex-grow">
+                            <CardContent className="flex-grow space-y-4">
                                 <p className="text-sm text-gray-600">{ecole.description}</p>
-                                <p className="text-sm text-muted-foreground mt-4 flex items-center gap-2">
+                                <p className="text-sm text-muted-foreground flex items-center gap-2">
                                     <User className="w-4 h-4" />
                                     Responsable : {ecole.responsable}
                                 </p>
+                                
+                                {/* Tarifs */}
+                                <div className="border-t pt-4 space-y-2">
+                                    <h4 className="text-sm font-semibold flex items-center gap-2">
+                                        <Euro className="w-4 h-4" />
+                                        Tarifs
+                                    </h4>
+                                    <div className="grid grid-cols-2 gap-2 text-sm">
+                                        <div className="flex items-center gap-1">
+                                            <Car className="w-3 h-3 text-blue-500" />
+                                            <span>Conduite: {ecole.conduitePrice}€/h</span>
+                                        </div>
+                                        <div className="flex items-center gap-1">
+                                            <BookOpen className="w-3 h-3 text-green-500" />
+                                            <span>Code: {ecole.codePrice}€/h</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </CardContent>
                             <CardFooter>
                                 <Button className="w-full" onClick={() => handleRequest(ecole.nom)}>
@@ -67,4 +117,3 @@ const ChoisirAutoEcole = () => {
 };
 
 export default ChoisirAutoEcole;
-
