@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { 
   LayoutDashboard, 
@@ -30,12 +29,12 @@ const Sidebar = ({ userRole }: SidebarProps) => {
         ];
       case 'responsable':
         return [
-          { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
-          { icon: Users, label: 'Utilisateurs', path: '/utilisateurs' },
-          { icon: BookOpen, label: 'Cours', path: '/cours' },
-          { icon: Calendar, label: 'Planning', path: '/planning' },
-          { icon: Car, label: 'Véhicules', path: '/vehicules' },
-          { icon: CreditCard, label: 'Paiements', path: '/paiements' },
+          { icon: LayoutDashboard, label: 'Dashboard', path: '/responsable/dashboard' },
+          { icon: Users, label: 'Utilisateurs', path: '/responsable/utilisateurs' },
+          { icon: BookOpen, label: 'Cours', path: '/responsable/cours' },
+          { icon: Calendar, label: 'Planning', path: '/responsable/planning' },
+          { icon: Car, label: 'Véhicules', path: '/responsable/vehicules' },
+          { icon: CreditCard, label: 'Paiements', path: '/responsable/paiements' },
         ];
       case 'formateur':
         return [

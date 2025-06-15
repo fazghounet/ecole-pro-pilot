@@ -61,12 +61,12 @@ const App = () => (
           <Route path="/admin/roles" element={<Roles />} />
           
           {/* Responsable Routes */}
-          <Route path="/dashboard" element={<ResponsableDashboard />} />
-          <Route path="/utilisateurs" element={<ResponsableUtilisateurs />} />
-          <Route path="/cours" element={<ResponsableCours />} />
-          <Route path="/planning" element={<ResponsablePlanning />} />
-          <Route path="/vehicules" element={<ResponsableVehicules />} />
-          <Route path="/paiements" element={<ResponsablePaiements />} />
+          <Route path="/responsable/dashboard" element={<ResponsableDashboard />} />
+          <Route path="/responsable/utilisateurs" element={<ResponsableUtilisateurs />} />
+          <Route path="/responsable/cours" element={<ResponsableCours />} />
+          <Route path="/responsable/planning" element={<ResponsablePlanning />} />
+          <Route path="/responsable/vehicules" element={<ResponsableVehicules />} />
+          <Route path="/responsable/paiements" element={<ResponsablePaiements />} />
           
           {/* Formateur Routes */}
           <Route path="/formateur/dashboard" element={<FormateurDashboard />} />
