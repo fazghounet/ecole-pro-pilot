@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -42,6 +41,11 @@ import CandidatExamens from "./pages/candidat/Examens";
 import CandidatPaiements from "./pages/candidat/Paiements";
 import ChoisirAutoEcole from "./pages/candidat/ChoisirAutoEcole";
 
+// Add new imports for profile pages
+import AdminProfil from "./pages/admin/Profil";
+import FormateurProfil from "./pages/formateur/Profil";
+import CandidatProfil from "./pages/candidat/Profil";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -60,6 +64,7 @@ const App = () => (
           <Route path="/admin/auto-ecoles" element={<AutoEcoles />} />
           <Route path="/admin/utilisateurs" element={<Utilisateurs />} />
           <Route path="/admin/roles" element={<Roles />} />
+          <Route path="/admin/profil" element={<AdminProfil />} />
           
           {/* Responsable Routes */}
           <Route path="/responsable/dashboard" element={<ResponsableDashboard />} />
@@ -76,6 +81,7 @@ const App = () => (
           <Route path="/formateur/cours" element={<FormateurCours />} />
           <Route path="/formateur/planning" element={<FormateurPlanning />} />
           <Route path="/formateur/vehicules" element={<FormateurVehicules />} />
+          <Route path="/formateur/profil" element={<FormateurProfil />} />
           
           {/* Candidat Routes */}
           <Route path="/candidat/dashboard" element={<CandidatDashboard />} />
@@ -85,6 +91,7 @@ const App = () => (
           <Route path="/candidat/cours" element={<CandidatCours />} />
           <Route path="/candidat/examens" element={<CandidatExamens />} />
           <Route path="/candidat/paiements" element={<CandidatPaiements />} />
+          <Route path="/candidat/profil" element={<CandidatProfil />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

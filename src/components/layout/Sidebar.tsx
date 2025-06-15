@@ -37,6 +37,7 @@ const AppSidebar = ({ userRole }: AppSidebarProps) => {
           { icon: Building, label: 'Auto-écoles', path: '/admin/auto-ecoles' },
           { icon: Users, label: 'Utilisateurs', path: '/admin/utilisateurs' },
           { icon: Settings, label: 'Rôles', path: '/admin/roles' },
+          { icon: User, label: 'Profil', path: '/admin/profil' },
         ];
       case 'responsable':
         return [
@@ -55,6 +56,7 @@ const AppSidebar = ({ userRole }: AppSidebarProps) => {
           { icon: BookOpen, label: 'Cours', path: '/formateur/cours' },
           { icon: Calendar, label: 'Planning', path: '/formateur/planning' },
           { icon: Car, label: 'Véhicules', path: '/formateur/vehicules' },
+          { icon: User, label: 'Profil', path: '/formateur/profil' },
         ];
       case 'candidat':
         return [
@@ -64,6 +66,7 @@ const AppSidebar = ({ userRole }: AppSidebarProps) => {
           { icon: CreditCard, label: 'Paiements', path: '/candidat/paiements' },
           { icon: FileText, label: 'Documents', path: '/candidat/documents' },
           { icon: FileText, label: 'Examens', path: '/candidat/examens' },
+          { icon: User, label: 'Profil', path: '/candidat/profil' },
         ];
       default:
         return [];
