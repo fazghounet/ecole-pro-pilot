@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   Dialog,
@@ -71,7 +72,7 @@ export default function CandidatNewSessionDialog() {
     setSuccess(true);
     // Ici, lancer une requête API si besoin
     setTimeout(() => {
-      setForm({ type: "", date: null, hour: "" });
+      setForm({ type: "", date: null, hour: "", place: "" });
       setOpen(false);
       setSuccess(false);
     }, 1200);
